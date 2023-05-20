@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "umd",
+      "lib": [
+        "ESNext",
+        "dom"
+      ],
+      "jsx": "react",
+      "noEmit": true,    
+      "sourceMap": true,
+      "strict": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "moduleResolution": "node",
+      "forceConsistentCasingInFileNames": true,
+      "esModuleInterop": true
+    },
+    "exclude": ["node_modules"],
+    "include": [
+      "**/*.ts",
+      "**/*.tsx",
+      "types/general.ts",
+      "types/images.d.ts"
+    ],
+  }
