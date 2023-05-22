@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import APIContextProvider from "./api/apiContext";
 import { useAPI } from "./api/apiContext";
-import { MOVIE_TYPE, SHOWS_TYPE, MOVIES_TYPE, NAV } from './constants/general'
+import { NAV } from './constants/general'
 import slugify from './utils/slugify';
 import './styles.css';
 
@@ -27,8 +27,8 @@ const AppRoutes = (): JSX.Element => {
               return<Route path={`/${path}`} element={<Carousel type={type as 'series' | 'movie' | null} />} key={title}/>
           })}
           {data?.map(item => {
-              const { title } = item;
-              return <Route path={`/${slugify(title)}`} element={<Program item={item} />} key={title} />
+              const { id, title } = item;
+              return <Route path={`/${slugify(title)}`} element={<Program id={id} />} key={title} />
           })}
       </Routes>
     )

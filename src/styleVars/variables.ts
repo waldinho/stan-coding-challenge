@@ -15,6 +15,32 @@ export const mobile = "321px";
 export const desktop = "768px";
 export const desktop_xl = "1024px";
 
+export const boxShadowBlue = `
+    -webkit-box-shadow: 0px 0px 0px 5px ${blue};
+    -moz-box-shadow: 0px 0px 0px 5px ${blue};
+    box-shadow: 0px 0px 0px 5px ${blue};
+    border-radius: 5px;
+` 
+
+export const boxShadowBlack = `
+    -webkit-box-shadow: 0px 0px 0px 5px ${black};
+    -moz-box-shadow: 0px 0px 0px 5px ${black};
+    box-shadow: 0px 0px 0px 5px ${black};
+` 
+
+export const arrow = `
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    width: ${spacing.xl};
+    height: ${spacing.xl};
+    border-radius: ${spacing.lg};
+    font-size: ${fontSize.lg};
+    background-color: ${white};
+    border: 1px solid ${grey};
+`
+
 // Mixins
 export const width = () => `
     width: 100%;

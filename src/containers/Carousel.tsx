@@ -16,7 +16,7 @@ const Carousel = ({ type }: CarouselProps)=> {
     const { data, isloading } = useAPI();
 
     const navigate = useNavigate();
-    const titles = type && filterTitles(data, type) || data;
+    const titles = type && filterTitles(data, 'type', type) || data;
 
     const [firstItemIndex, setfirstItemIndex] = useState(0);
     const [indexLimit, setIndexLimit] = useState(6);
@@ -67,7 +67,7 @@ const Carousel = ({ type }: CarouselProps)=> {
                         <LeftArrow onClick={() => prev(firstItemIndex)} disabled={firstItemIndex === 0}>
                             &lt;
                         </LeftArrow>
-                        <CarouselContent isloading={isloading.toString()}>
+                        <CarouselContent>
                             {titles?.slice(firstItemIndex, indexLimit).map((item, i) => 
                                 <StyledLink 
                                     to={`/${slugify(item.title)}`} 
@@ -75,6 +75,7 @@ const Carousel = ({ type }: CarouselProps)=> {
                                     onMouseLeave={() => setHoverIndex(-1)}
                                     key={item.title}
                                     active={(i === 0 && hoverIndex === -1).toString()}
+                                    isloading={isloading.toString()}
                                     >
                                         <Artwork src={item.image} alt={item.title} />
                                 </StyledLink>
@@ -107,7 +108,7 @@ const CarouselContentWrapper = styled.div`
     overflow: hidden;
 `;
 
-const CarouselContent = styled.div<{ isloading?: string }>`
+const CarouselContent = styled.div`
     display: flex;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -119,15 +120,9 @@ const CarouselContent = styled.div<{ isloading?: string }>`
         flex-grow: 1;
         ${style.width()}
         margin: ${style.spacing.sm} ${style.spacing.sm} 0 0;
-        ${({ isloading }) => isloading === 'true' && `
-            background-color: ${style.grey}; 
-            min-width: 321px;
-            height: 481px;
-        `}
         @media (min-width: ${style.desktop}) {
             max-width: 168px;
-            margin: 0 ${style.spacing.md} 0 0;
-            margin: ${style.spacing.md} ${style.spacing.md};
+            margin: ${style.spacing.md};
         }
         @media (min-width: ${style.desktop_xl}) {
             width: unset;
@@ -137,16 +132,7 @@ const CarouselContent = styled.div<{ isloading?: string }>`
 `;
 
 const Arrow = styled.button`
-    position: absolute;
-    z-index: 1;
-    top: 50%;
-    transform: translateY(-50%);
-    width: ${style.spacing.xl};
-    height: ${style.spacing.xl};
-    border-radius: ${style.spacing.lg};
-    font-size: ${style.fontSize.lg};
-    background-color: ${style.white};
-    border: 1px solid ${style.grey};
+    ${style.arrow};
     &:disabled {
         opacity: 0;
     }
@@ -160,22 +146,32 @@ const RightArrow = styled(Arrow)`
     right: ${style.spacing.sm};
 `;
 
-const StyledLink = styled(Link)<{ active?: string }>`
+const StyledLink = styled(Link)<{ active?: string, isloading: string }>`
+    ${({ isloading }) => isloading === 'true' && `
+        background-color: ${style.grey};
+        min-width: 321px;
+        height: 590px;
+    `}
     @media (min-width: ${style.desktop}) {
         margin: 0;
         padding: ${style.spacing.md};
         ${({ active }) => active === 'true' && `
-        -webkit-box-shadow: 0px 0px 0px 5px ${style.blue};
-        -moz-box-shadow: 0px 0px 0px 5px ${style.blue};
-        box-shadow: 0px 0px 0px 5px ${style.blue};
-        border-radius: 5px;
+        ${style.boxShadowBlue}
         position: relative;
         `};
+        ${({ isloading }) => isloading === 'true' && `
+            ${style.boxShadowBlack}
+            background-color: ${style.grey}; 
+            margin: ${style.spacing.md};
+            padding: 0;
+            min-width: 321px;
+            height: 481px;
+        `}
         &:hover {
-            -webkit-box-shadow: 0px 0px 0px 5px ${style.blue};
-            -moz-box-shadow: 0px 0px 0px 5px ${style.blue};
-            box-shadow: 0px 0px 0px 5px ${style.blue};
-            border-radius: 5px;
+            ${style.boxShadowBlue}
+            ${({ isloading }) => isloading === 'true' && `
+            ${style.boxShadowBlack}
+            `}
             position: relative;
         }
     }
@@ -184,7 +180,8 @@ const StyledLink = styled(Link)<{ active?: string }>`
 const Artwork = styled.img`
     ${style.width()}
     @media (min-width: ${style.desktop}) {
-        max-width: ${style.mobile}
+        max-width: ${style.mobile};
+        height: 100%;
     }
 `;
 
