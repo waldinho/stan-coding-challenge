@@ -3,7 +3,7 @@ import { Context } from '../types/general'
 
 const APIContext = createContext({ data: [], isloading: false, isError: false } as Context)
 
-function APIContextProvider({ children }) {
+const APIContextProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [isloading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -29,7 +29,7 @@ function APIContextProvider({ children }) {
 
 export default APIContextProvider;
 
-export function useAPI() {
+export const useAPI = () => {
   const context = useContext(APIContext);
   if (context === undefined) {
     throw new Error("Context must be used within a Provider");

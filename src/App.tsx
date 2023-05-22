@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import APIContextProvider from "./api/apiContext";
-import { useAPI } from "./api/apiContext";
+import APIContextProvider from './api/apiContext';
+import { useAPI } from './api/apiContext';
 import { NAV } from './constants/general'
 import slugify from './utils/slugify';
 import './styles.css';
 
-import Nav from "./components/Nav";
-import Error from "./components/Error";
-import Carousel from "./containers/Carousel";
-import Program from "./containers/Program";
+import Nav from './components/Nav';
+import Error from './components/Error';
+import Carousel from './containers/Carousel';
+import Program from './containers/Program';
 
 export const App = (): JSX.Element => {
 

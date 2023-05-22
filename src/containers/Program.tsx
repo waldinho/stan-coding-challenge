@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from "react-router-dom";
-import { useAPI } from "../api/apiContext";
+import { useNavigate } from 'react-router-dom';
+import { useAPI } from '../api/apiContext';
 import filterTitles from '../utils/filterTitles';
 import useKeypress from '../hooks/useKeyPress';
 import DividedList from '../components/DividedList';
@@ -11,7 +11,7 @@ type ProgramlProps = {
     id: number;
 };
 
-const Nav = ({ id }: ProgramlProps): JSX.Element => {
+const Program = ({ id }: ProgramlProps): JSX.Element => {
     const { data, isloading } = useAPI();
     const navigate = useNavigate();
     const [backPressed, setBackPressed] = useState(false);
@@ -37,10 +37,10 @@ const Nav = ({ id }: ProgramlProps): JSX.Element => {
     }, [backPressed]);
     return (
         <ProgramContainer>
-            <ProgramArtworkWrapper isloading={isloading.toString()}>
-                <Artwork src={image} alt={title} />
+            <ProgramArtworkWrapper isloading={isloading?.toString()}>
+                <Artwork src={image} alt={title}  aria-label={title}/>
             </ProgramArtworkWrapper>
-            <ProgramDetailsWrapper isloading={isloading.toString()}>
+            <ProgramDetailsWrapper isloading={isloading?.toString()}>
                 <h2>{title}</h2>
                 <DividedList list={[rating, year.toString(), genre, language ]}/>
                 <p>{description}</p>
@@ -107,7 +107,7 @@ const ProgramDetailsWrapper = styled.div<{ isloading: string }>`
     ul { 
         ${({ isloading }) => isloading === 'true' && `
             li:after {
-                content: "";
+                content: '';
             }
         `}}
         @media (min-width: ${style.desktop}) {
@@ -126,4 +126,4 @@ const ProgramDetailsWrapper = styled.div<{ isloading: string }>`
     }
 `;
 
-export default Nav;
+export default Program;

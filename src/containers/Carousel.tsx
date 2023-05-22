@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useAPI } from "../api/apiContext";
+import { useAPI } from '../api/apiContext';
 import filterTitles from '../utils/filterTitles';
 import slugify from '../utils/slugify';
 import * as style from '../styleVars/variables';
@@ -74,10 +74,10 @@ const Carousel = ({ type }: CarouselProps)=> {
                                     onMouseEnter={() => setHoverIndex(i + firstItemIndex)}
                                     onMouseLeave={() => setHoverIndex(-1)}
                                     key={item.title}
-                                    active={(i === 0 && hoverIndex === -1).toString()}
-                                    isloading={isloading.toString()}
+                                    active={(i === 0 && hoverIndex === -1)?.toString()}
+                                    isloading={isloading?.toString()}
                                     >
-                                        <Artwork src={item.image} alt={item.title} />
+                                        <Artwork src={item.image} alt={item.title} aria-label={item.title} />
                                 </StyledLink>
                             )}
                         </CarouselContent>

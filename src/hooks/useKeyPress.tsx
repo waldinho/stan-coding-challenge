@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 
-export default function useKeypress(key, action) {
+const useKeypress = (key, action) => {
   useEffect(() => {
-    function onKeyup(e) {
+    const onKeyup = (e) => {
       if (e.keyCode === key) action()
     }
     window.addEventListener('keyup', onKeyup);
     return () => window.removeEventListener('keyup', onKeyup);
   }, []);
 }
+
+export default useKeypress;

@@ -7,17 +7,16 @@ interface DivideListProps {
 }
 
 const DividelList = ({ list }:  DivideListProps): JSX.Element => {
-    console.log('list: ', list);
     return (
-            <List>
-                {list?.map((item, i) => {
-                    return (
-                        <ListItem key={item}>
-                            {item}
-                        </ListItem>
-                    )
-                })}
-            </List>
+        <List>
+            {list?.map((item, i) => {
+                return (
+                    <ListItem key={item}>
+                        {item}
+                    </ListItem>
+                )
+            })}
+        </List>
     )
 };
 
@@ -32,11 +31,11 @@ const List = styled.ul`
 const ListItem = styled.li`
     display: inline;
     &:after {
-        content: " | ";
+        content: ' | ';
         padding: ${style.spacing.sm};
     }
     &:last-child:after { 
-        content: ""; 
+        content: ''; 
     }
 `;
 

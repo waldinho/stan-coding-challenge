@@ -5,15 +5,15 @@ import LogoSVG from '../assets/logo.svg';
 import { COMPANY_NAME, NAV } from '../constants/general'
 import * as style from '../styleVars/variables';
 
-const ACTIVE_CLASS = "active";
+const ACTIVE_CLASS = 'active';
 
 const Nav = (): JSX.Element => {
     const location = useLocation();
     const { pathname } = location;
-    const splitLocation = pathname.split("/");
+    const splitLocation = pathname.split('/');
     return (
         <Wrapper>
-            <Logo src={LogoSVG} alt={`${COMPANY_NAME}`} width="180px" height="auto"/>
+            <Logo src={LogoSVG} alt={`${COMPANY_NAME}`} width='180px' height='auto'/>
             <Menu>
                 {NAV?.map((item, i) => {
                     const { title, location } = item;

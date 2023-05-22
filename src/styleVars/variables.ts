@@ -1,19 +1,19 @@
 // Colors
-export const white = "#fff";
-export const black = "#000";
-export const grey = "#878787";
-export const blue = "#0372fa";
+export const white = '#fff';
+export const black = '#000';
+export const grey = '#878787';
+export const blue = '#0372fa';
 
 // Font sizes 
-export const fontSize = {sm: "10px", md: '14px', lg: '24px'};
+export const fontSize = {sm: '10px', md: '14px', lg: '24px'};
 
 // Spacing
-export const spacing = {sm: "8px", md: '16px', lg: '24px', xl: '48px'};
+export const spacing = {sm: '8px', md: '16px', lg: '24px', xl: '48px'};
 
 // Media queries
-export const mobile = "321px";
-export const desktop = "768px";
-export const desktop_xl = "1024px";
+export const mobile = '321px';
+export const desktop = '768px';
+export const desktop_xl = '1024px';
 
 export const boxShadowBlue = `
     -webkit-box-shadow: 0px 0px 0px 5px ${blue};
