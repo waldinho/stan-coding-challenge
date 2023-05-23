@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, createContext } from "react";
 import { Context } from '../types/general'
 
-const APIContext = createContext({ data: [], isloading: false, isError: false } as Context)
+const APIContext = createContext<Context>({ data: [], isloading: false, isError: false })
 
 const APIContextProvider = ({ children }) => {
   const [data, setData] = useState([]);
@@ -16,6 +16,7 @@ const APIContextProvider = ({ children }) => {
         setIsLoading(false);
       }),
       err => {
+        console.log('API Context error: ', err);
         setIsError(true);
       }
   }, []);
