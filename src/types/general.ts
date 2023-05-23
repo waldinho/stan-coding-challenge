@@ -15,3 +15,10 @@ export type Context = {
   isloading: boolean;
   isError: boolean;
 };
+
+export type Nav = {
+  title:  string,
+  type: 'series' | 'movie' | null;
+  path: string;
+  location: string;
+};
