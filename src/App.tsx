@@ -24,7 +24,7 @@ const AppRoutes = (): JSX.Element => {
     <Routes>
       {NAV?.map(item => {
         const { path, type, title } = item;
-        return<Route path={`/${path}`} element={<Carousel type={type as 'series' | 'movie' | null} />} key={title}/>
+        return<Route path={`/${path}`} element={<Carousel type={type} />} key={title}/>
       })}
       {data?.map(item => {
         const { id, title } = item;
