@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, createContext } from "react";
-import { Context } from '../types/general1'
+import { Context } from '../types/general'
 
 const APIContext = createContext({ data: [], isloading: false, isError: false } as Context)
 
@@ -10,14 +10,14 @@ const APIContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetch("http://localhost:3000/titles")
-        .then((res) => res.json())
-        .then((json) => {
-          setData(json);
-          setIsLoading(false);
-        }),
-        err => {
-          setIsError(true);
-        }
+      .then((res) => res.json())
+      .then((json) => {
+        setData(json);
+        setIsLoading(false);
+      }),
+      err => {
+        setIsError(true);
+      }
   }, []);
 
   return (
