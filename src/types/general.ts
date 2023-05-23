@@ -1,7 +1,7 @@
 export type Program = {
   id: number,
   title: string,
-  description?: string,
+  description: string,
   type: string,
   image: string
   rating: string,
