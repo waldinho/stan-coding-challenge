@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, createContext } from "react";
-import { Context } from '../types/general'
+import { Context } from '../types/general1'
 
 const APIContext = createContext({ data: [], isloading: false, isError: false } as Context)
 

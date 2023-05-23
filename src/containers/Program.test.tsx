@@ -4,7 +4,6 @@ import { HashRouter as Router } from 'react-router-dom';
 import * as mockData from '../api/data.json';
 import Program from './Program';
 
-// Mock the useAPI hook
 jest.mock('../api/apiContext', () => ({
   useAPI: jest.fn(() => ({
     data: mockData.titles,

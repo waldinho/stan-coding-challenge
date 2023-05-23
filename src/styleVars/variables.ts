@@ -16,42 +16,43 @@ export const desktop = '768px';
 export const desktop_xl = '1024px';
 
 export const boxShadowBlue = `
-    -webkit-box-shadow: 0px 0px 0px 5px ${blue};
-    -moz-box-shadow: 0px 0px 0px 5px ${blue};
-    box-shadow: 0px 0px 0px 5px ${blue};
-    border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 0px 5px ${blue};
+  -moz-box-shadow: 0px 0px 0px 5px ${blue};
+  box-shadow: 0px 0px 0px 5px ${blue};
+  border-radius: 5px;
 ` 
 
 export const boxShadowBlack = `
-    -webkit-box-shadow: 0px 0px 0px 5px ${black};
-    -moz-box-shadow: 0px 0px 0px 5px ${black};
-    box-shadow: 0px 0px 0px 5px ${black};
+  -webkit-box-shadow: 0px 0px 0px 5px ${black};
+  -moz-box-shadow: 0px 0px 0px 5px ${black};
+  box-shadow: 0px 0px 0px 5px ${black};
 ` 
 
 export const arrow = `
-    position: absolute;
-    z-index: 1;
-    top: 50%;
-    transform: translateY(-50%);
-    width: ${spacing.xl};
-    height: ${spacing.xl};
-    border-radius: ${spacing.lg};
-    font-size: ${fontSize.lg};
-    background-color: ${white};
-    border: 1px solid ${grey};
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  width: ${spacing.xl};
+  height: ${spacing.xl};
+  border-radius: ${spacing.lg};
+  font-size: ${fontSize.lg};
+  background-color: ${white};
+  border: 1px solid ${grey};
+  cursor: pointer;
 `
 
 // Mixins
 export const width = () => `
-    width: 100%;
+  width: 100%;
 `;
 
 export const column = () => `
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const row = () => `
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 `
