@@ -24,22 +24,25 @@ const Carousel = ({ type }: CarouselProps)=> {
   const [enterPressed, setEnterPressed] = useState(false);
   const [leftPressed, setLeftPressed] = useState(false);
   const [rightPressed, setRightPressed] = useState(false);
+  const [arrowClick, setArrowClick] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(-1);
 
-  const next = (index: number) => {
+  const next = (index: number, arrowClicked: boolean) => {
     if (index < titles.length - 1) {
       setfirstItemIndex(prevState => prevState + 1);
       setIndexLimit(prevState => prevState + 1);
     }
+    setArrowClick(arrowClicked)
     setLeftPressed(false);
     setRightPressed(false);
   };
   
-  const prev = (index: number) => {
-    if (index > 0 ) {
+  const prev = (index: number, arrowClicked: boolean) => {
+    if (index > 0) {
       setIndexLimit(prevState => prevState - 1);
       setfirstItemIndex(prevState => prevState - 1);
     }
+    setArrowClick(arrowClicked)
     setLeftPressed(false);
   };
   
@@ -56,16 +59,17 @@ const Carousel = ({ type }: CarouselProps)=> {
   });
 
   useEffect(() => {
-    leftPressed && prev(firstItemIndex);
-    rightPressed && next(firstItemIndex);
-    enterPressed && navigate(`/${slugify(titles[hoverIndex !== -1 ? hoverIndex + firstItemIndex : firstItemIndex].title)}`);
+    leftPressed && prev(firstItemIndex, false);
+    rightPressed && next(firstItemIndex, false);
+    const checkArrowClick = arrowClick ? firstItemIndex - 1 : firstItemIndex;
+    enterPressed && navigate(`/${slugify(titles[hoverIndex !== -1 ? hoverIndex + firstItemIndex : checkArrowClick].title)}`);
   }, [firstItemIndex, titles, enterPressed, leftPressed, rightPressed, hoverIndex]);
     return (
     <>
       <CarouselContainer>
         <CarouselWrapper>
           <CarouselContentWrapper>
-            <LeftArrow onClick={() => prev(firstItemIndex)} disabled={firstItemIndex === 0}>
+            <LeftArrow onClick={() => prev(firstItemIndex, true)} disabled={firstItemIndex === 0}>
               &lt;
             </LeftArrow>
             <CarouselContent>
@@ -81,7 +85,7 @@ const Carousel = ({ type }: CarouselProps)=> {
                 />
               )}
             </CarouselContent>
-            <RightArrow onClick={() => next(firstItemIndex)} disabled={(firstItemIndex === titles.length - 1)}>
+            <RightArrow onClick={() => next(firstItemIndex, true)} disabled={(firstItemIndex === titles.length - 1)}>
               &gt;
             </RightArrow>
             </CarouselContentWrapper>
