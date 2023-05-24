@@ -26,6 +26,8 @@ const Carousel = ({ type }: CarouselProps)=> {
   const [rightPressed, setRightPressed] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(-1);
 
+  const currentIndex = hoverIndex !== -1 ? hoverIndex + firstItemIndex : firstItemIndex;
+
   const next = (index: number) => {
     if (index < titles.length - 1) {
       setfirstItemIndex(prevState => prevState + 1);
@@ -58,7 +60,7 @@ const Carousel = ({ type }: CarouselProps)=> {
   useEffect(() => {
     leftPressed && prev(firstItemIndex);
     rightPressed && next(firstItemIndex);
-    enterPressed && navigate(`/${slugify(titles[hoverIndex !== -1 ? hoverIndex + firstItemIndex : firstItemIndex].title)}`);
+    enterPressed && navigate(`/${slugify(titles[currentIndex].title)}`);
   }, [firstItemIndex, titles, enterPressed, leftPressed, rightPressed, hoverIndex]);
     return (
     <>

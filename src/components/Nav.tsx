@@ -17,8 +17,9 @@ const Nav = (): JSX.Element => {
       <Menu>
         {NAV?.map((item, i) => {
           const { title, location } = item;
+          const isActive = splitLocation[1] === location && `${ACTIVE_CLASS}` || '';
           return (
-            <MenuItem className={splitLocation[1] === location && `${ACTIVE_CLASS}` || ''} key={title}>
+            <MenuItem className={isActive} key={title}>
               <MenuLink to={`/${location}`}>{title}</MenuLink>
             </MenuItem>
           )
