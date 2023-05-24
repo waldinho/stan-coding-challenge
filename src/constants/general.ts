@@ -1,3 +1,5 @@
+import { Nav } from '../types/general'
+
 export const COMPANY_NAME = 'Stan';
 
 export const HOMEPAGE = 'Homepage';
@@ -8,7 +10,7 @@ export const SHOWS_TYPE = 'series';
 export const MOVIES_TYPE = 'movies';
 export const MOVIE_TYPE = 'movie';
 
-export const NAV = [
+export const NAV: Nav[] = [
     {
         title: HOMEPAGE,
         path: '/',

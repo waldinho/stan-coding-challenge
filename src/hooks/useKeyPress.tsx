@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect} from 'react';
 
-const useKeypress = (key, action) => {
+const useKeypress = (key: number, action: () => void) => {
   useEffect(() => {
     const onKeyup = (e) => {
       if (e.keyCode === key) action()

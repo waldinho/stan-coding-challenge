@@ -14,12 +14,12 @@ type CarouselProps = {
   setHoverIndex: Dispatch<SetStateAction<number>>;
 };
 
-const Card = ({ item, index, isloading, hoverIndex, firstItemIndex, setHoverIndex }: CarouselProps): JSX.Element => {
+const Card = ({ item, index, isloading, hoverIndex, setHoverIndex }: CarouselProps): JSX.Element => {
   const { title, image } = item;
   return (
     <StyledLink 
       to={`/${slugify(title)}`} 
-      onMouseEnter={() => setHoverIndex(index + firstItemIndex)}
+      onMouseEnter={() => setHoverIndex(index)}
       onMouseLeave={() => setHoverIndex(-1)}
       key={title}
       active={(index === 0 && hoverIndex === -1)?.toString()}
