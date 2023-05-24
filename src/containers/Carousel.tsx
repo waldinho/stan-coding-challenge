@@ -42,7 +42,7 @@ const Carousel = ({ type }: CarouselProps)=> {
       setIndexLimit(prevState => prevState - 1);
       setfirstItemIndex(prevState => prevState - 1);
     }
-    setArrowClick(arrowClicked)
+    setArrowClick(arrowClicked);
     setLeftPressed(false);
   };
   
