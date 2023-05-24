@@ -18,7 +18,7 @@ const Card = ({ item, index, isloading, hoverIndex, setHoverIndex }: CarouselPro
   const { title, image } = item;
   return (
     <StyledLink 
-      to={`/${slugify(title)}`} 
+      to={`/${slugify(title)}`}
       onMouseEnter={() => setHoverIndex(index)}
       onMouseLeave={() => setHoverIndex(-1)}
       key={title}

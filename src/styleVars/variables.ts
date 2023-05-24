@@ -39,7 +39,16 @@ export const arrow = `
   font-size: ${fontSize.lg};
   background-color: ${white};
   border: 1px solid ${grey};
+  color: ${black};
   cursor: pointer;
+`
+
+export const centeredContent = `
+  display: block;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
 `
 
 // Mixins

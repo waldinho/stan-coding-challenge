@@ -24,25 +24,22 @@ const Carousel = ({ type }: CarouselProps)=> {
   const [enterPressed, setEnterPressed] = useState(false);
   const [leftPressed, setLeftPressed] = useState(false);
   const [rightPressed, setRightPressed] = useState(false);
-  const [arrowClick, setArrowClick] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(-1);
 
-  const next = (index: number, arrowClicked: boolean) => {
+  const next = (index: number) => {
     if (index < titles.length - 1) {
       setfirstItemIndex(prevState => prevState + 1);
       setIndexLimit(prevState => prevState + 1);
     }
-    setArrowClick(arrowClicked)
     setLeftPressed(false);
     setRightPressed(false);
   };
   
-  const prev = (index: number, arrowClicked: boolean) => {
+  const prev = (index: number) => {
     if (index > 0) {
       setIndexLimit(prevState => prevState - 1);
       setfirstItemIndex(prevState => prevState - 1);
     }
-    setArrowClick(arrowClicked);
     setLeftPressed(false);
   };
   
@@ -59,18 +56,17 @@ const Carousel = ({ type }: CarouselProps)=> {
   });
 
   useEffect(() => {
-    leftPressed && prev(firstItemIndex, false);
-    rightPressed && next(firstItemIndex, false);
-    const checkArrowClick = arrowClick ? firstItemIndex - 1 : firstItemIndex;
-    enterPressed && navigate(`/${slugify(titles[hoverIndex !== -1 ? hoverIndex + firstItemIndex : checkArrowClick].title)}`);
+    leftPressed && prev(firstItemIndex);
+    rightPressed && next(firstItemIndex);
+    enterPressed && navigate(`/${slugify(titles[hoverIndex !== -1 ? hoverIndex + firstItemIndex : firstItemIndex].title)}`);
   }, [firstItemIndex, titles, enterPressed, leftPressed, rightPressed, hoverIndex]);
     return (
     <>
       <CarouselContainer>
         <CarouselWrapper>
           <CarouselContentWrapper>
-            <LeftArrow onClick={() => prev(firstItemIndex, true)} disabled={firstItemIndex === 0}>
-              &lt;
+            <LeftArrow onClick={() => setLeftPressed(true)} disabled={firstItemIndex === 0}>
+              <ArrowContent aria-label="Previous">&lt;</ArrowContent>
             </LeftArrow>
             <CarouselContent>
               {titles?.slice(firstItemIndex, indexLimit).map((item, i) => 
@@ -85,8 +81,8 @@ const Carousel = ({ type }: CarouselProps)=> {
                 />
               )}
             </CarouselContent>
-            <RightArrow onClick={() => next(firstItemIndex, true)} disabled={(firstItemIndex === titles.length - 1)}>
-              &gt;
+            <RightArrow onClick={() => setRightPressed(true)} disabled={(firstItemIndex === titles.length - 1)}>
+              <ArrowContent aria-label="Next">&gt;</ArrowContent>
             </RightArrow>
             </CarouselContentWrapper>
         </CarouselWrapper>
@@ -135,11 +131,15 @@ const CarouselContent = styled.div`
   }
 `;
 
-const Arrow = styled.button`
+const Arrow = styled.div<{ disabled: boolean }>`
   ${style.arrow};
-  &:disabled {
+  ${({ disabled }) => disabled && `
     opacity: 0;
-  }
+  `}
+`;
+
+const ArrowContent= styled.span`
+  ${style.centeredContent};
 `;
 
 const LeftArrow = styled(Arrow)`
